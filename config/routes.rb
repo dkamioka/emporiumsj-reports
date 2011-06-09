@@ -1,4 +1,6 @@
 EmporiumsjReports::Application.routes.draw do
+  resources :vendas
+
   resources :estoques
 
   # The priority is based upon order of creation:
