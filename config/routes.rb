@@ -1,4 +1,6 @@
 EmporiumsjReports::Application.routes.draw do
+  resources :estoques
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
