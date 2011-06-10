@@ -1,4 +1,5 @@
 EmporiumsjReports::Application.routes.draw do
+  root :to => "welcome#index"
   resources :vendas
 
   resources :estoques

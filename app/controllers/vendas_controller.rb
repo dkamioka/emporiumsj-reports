@@ -2,8 +2,8 @@ class VendasController < ApplicationController
   # GET /vendas
   # GET /vendas.xml
   def index
-    @vendas = Venda.all
-
+    @vendas = Venda.all(:fields => [:data_geracao,:venda], :unique => true, :order => [:id.asc])
+    #@vendas = Venda.sum(:venda, :conditions => ['date(data_geracao) = ?', Date.today.to_date] )
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @vendas }

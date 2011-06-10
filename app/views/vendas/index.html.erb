@@ -8,11 +8,19 @@
   </tr>
 
 <% @vendas.each do |venda| %>
+  <% if venda.data_geracao.to_date == Date.today.prev_day() %>
   <tr>
+    <td><%= venda.data_geracao %><td>
+    <td><%= venda.controle %></td>
+    <td><%= venda.nome_produto %></td>
+    <td><%= venda.custo %></td>
+    <td><%= venda.venda %></td>
+    <td><%= venda.lucro %></td>
     <td><%= link_to 'Show', venda %></td>
     <td><%= link_to 'Edit', edit_venda_path(venda) %></td>
     <td><%= link_to 'Destroy', venda, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
