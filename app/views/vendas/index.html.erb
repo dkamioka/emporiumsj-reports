@@ -1,0 +1,21 @@
+<h1>Listing vendas</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vendas.each do |venda| %>
+  <tr>
+    <td><%= link_to 'Show', venda %></td>
+    <td><%= link_to 'Edit', edit_venda_path(venda) %></td>
+    <td><%= link_to 'Destroy', venda, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Venda', new_venda_path %>

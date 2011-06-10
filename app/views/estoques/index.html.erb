@@ -1,0 +1,21 @@
+<h1>Listing estoques</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @estoques.each do |estoque| %>
+  <tr>
+    <td><%= link_to 'Show', estoque %></td>
+    <td><%= link_to 'Edit', edit_estoque_path(estoque) %></td>
+    <td><%= link_to 'Destroy', estoque, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Estoque', new_estoque_path %>
