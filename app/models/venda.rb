@@ -2,7 +2,6 @@ class Venda
 
   include DataMapper::Resource
 	
-#	storage_names[:default] = "vendas"
   property :id, Serial
   property :controle, String
   property :venda, Float
