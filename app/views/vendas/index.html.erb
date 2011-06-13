@@ -10,7 +10,7 @@
 <% @vendas.each do |venda| %>
   <% if venda.data_geracao.to_date == Date.today.prev_day() %>
   <tr>
-    <td><%= venda.data_geracao %><td>
+    <td><%= venda.data_geracao.strftime "%d/%m/%Y" %><td>
     <td><%= venda.controle %></td>
     <td><%= venda.nome_produto %></td>
     <td><%= venda.custo %></td>
