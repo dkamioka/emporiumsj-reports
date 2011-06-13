@@ -7,15 +7,12 @@
     <th></th>
   </tr>
 
-<% @chart.each do |k,v| %>
+<% @custos.each do |k,v| %>
   <tr>
     <td><%= k %><td>
-    <td><%= v[0] %></td>
-    <td><%= v[1] %></td>
-    <td><%= v[2] %></td>
-    <td><%= link_to 'Show', venda %></td>
-    <td><%= link_to 'Edit', edit_venda_path(venda) %></td>
-    <td><%= link_to 'Destroy', venda, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= v %></td>
+    <td><%= @vendas[k] %></td>
+    <td><%= @lucros[k] %></td>
   </tr>
 <% end %>
 </table>
