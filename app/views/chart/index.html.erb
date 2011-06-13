@@ -1,15 +1,25 @@
 <h1> Grafico de Vendas </h1>
 
-<table>
+<script type="text/javascript">
+  var chartData = [
+    <% @custos.each do |k,v| %>
+      { data: <%= k %>, custo: <%= v %>, venda: <%= @vendas[k] %>, lucro: <%= @lucros[k] %> }
+    <% end%>
+  ]
+</script>
+
+
+<table id="chart">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Data</th>
+    <th>Custo</th>
+    <th>Venda</th>
+    <th>Lucro</th>
   </tr>
 
 <% @custos.each do |k,v| %>
-  <tr>
-    <td><%= k %><td>
+  <tr class="<%= cycle("alt","none") %>">
+    <td><%= k %></td>
     <td><%= v %></td>
     <td><%= @vendas[k] %></td>
     <td><%= @lucros[k] %></td>
