@@ -9,6 +9,7 @@
                         enabled: true
                         , rotation: -90
                         , color: 'white'
+                        , align: 'left'
                       }
                     }
 

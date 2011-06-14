@@ -20,9 +20,9 @@ class ChartController < ApplicationController
     @lucros = Array.new(0)
     todas_vendas.each do |v|
       @datas << v.data.strftime('%d/%m/%Y - %H:%M')
-      @custos << v.custo.round(2)
-      @vendas << v.venda.round(2)
-      @lucros << v.lucro.round(2)
+      @custos << v.custo
+      @vendas << v.venda
+      @lucros << v.lucro
     end
    @h = LazyHighCharts::HighChart.new('graph') do |f|
          f.series(:name=>'Vendas', :data=>@vendas, :stack=>'venda')
