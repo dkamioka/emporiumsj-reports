@@ -1,3 +1,4 @@
 <%= javascript_include_tag 'highcharts' %> <!--[if IE]> <%= javascript_include_tag 'excanvas.compiled' %> <![endif]-->
-
-<%= high_chart("my_id", @h) %>
+<% high_chart("my_id", @h) do |c| %>
+        <%= "options.tooltip.formatter = function() { return '<b>HEY!!!'+ this.series.name +'</b><br/>'+ this.x +': '+ this.y +' units';}" %>
+   <%end %> 
