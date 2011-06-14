@@ -35,6 +35,8 @@ gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
 gem 'lazy_high_charts'
+gem 'jquery-rails', '>= 1.0.3'
+
 group(:development, :test) do
 
   # Uncomment this if you want to use rspec for testing your application
