@@ -13,7 +13,7 @@ class ChartController < ApplicationController
  end
 
  def show
-    todas_vendas = DataMapper.repository.adapter.select('select data_geracao data, sum(custo) custo, sum(venda) venda, sum(lucro) lucro from vendas group by data')
+    todas_vendas = DataMapper.repository.adapter.select("select data_geracao data, sum(custo) custo, sum(venda) venda, sum(lucro) lucro from vendas where date(data_geracao) >= '2011-06-14' group by data")
     @datas = Array.new(0)
     @custos = Array.new(0)
     @vendas = Array.new(0)
