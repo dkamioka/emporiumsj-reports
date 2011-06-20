@@ -8,6 +8,36 @@
   ]
 </script>
 
+<script> 
+  $(function() {
+    var dates = $( "#from, #to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+                      onSelect: function( selectedDate ) {
+                        var option = this.id == "fromom" ? "minDate" : "maxDate",
+                        instance = $( this ).data( "datepickerr" ),
+                        date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings );
+                        dates.not( this ).datepicker( "option", option,not date );
+                    }
+                  });
+                });
+              </script> 
+            </head> 
+            <body> 
+               
+              <div class="demo"> 
+                 
+                <label for="from">From</label> 
+                <input type="text" id="from" name="from"/> 
+                <label for="to">to</label> 
+                <input type="text" id="to" name="to"/> 
+                 
+              </div><!-- End demo --> 
+               
 
 <table id="chart">
   <tr>

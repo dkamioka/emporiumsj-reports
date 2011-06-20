@@ -11,9 +11,11 @@ class ChartController < ApplicationController
      @lucros[data] += v.lucro
    end
  end
-
+ 
  def show
-    todas_vendas = DataMapper.repository.adapter.select("select data_geracao data, sum(custo) custo, sum(venda) venda, sum(lucro) lucro from vendas where date(data_geracao) >= '2011-06-14' group by data")
+   data_de = params[:from]
+   data_ate = params[:to]
+    todas_vendas = DataMapper.repository.adapter.select("select data_geracao data, sum(custo) custo, sum(venda) venda, sum(lucro) lucro from vendas where date(data_geracao) between '#{data_de}' and '#{data_ate}' group by data")
     @datas = Array.new(0)
     @custos = Array.new(0)
     @vendas = Array.new(0)
@@ -29,10 +31,11 @@ class ChartController < ApplicationController
          f.series(:name=>'Lucros', :data=>@lucros, :stack=>'custo')
          f.series(:name=>'Custos', :data=>@custos, :stack=>'custo')
          f.series(:name=>'Lucros', :data=>@lucros, :type=>'spline')
-         #f.x_axis(:categories => @datas)
+         f.x_axis({:categories => [1,2,3,4]})
          f.title( :text => "Vendas de #{@datas.first} a #{@datas.last}" )
          f.chart({:defaultSeriesType=>"column"})
          #f.options[:plotOptions][:column][:stacking] = 'normal'
+         f.merge_options
    end
  end
 
