@@ -15,7 +15,37 @@ class ChartController < ApplicationController
  def show
    data_de = params[:from]
    data_ate = params[:to]
-    todas_vendas = DataMapper.repository.adapter.select("select data_geracao data, sum(custo) custo, sum(venda) venda, sum(lucro) lucro from vendas where date(data_geracao) between '#{data_de}' and '#{data_ate}' group by data")
+   if not ( data_de.nil? and data_ate.nil? ) then
+     conditions = "date(data_geracao) between '#{data_de}' and '#{data_ate}'"
+     groupby = "data"
+      
+     query = "
+            SELECT 
+              data_geracao data
+              , sum(custo) custo
+              , sum(venda) venda
+              , sum(lucro) lucro 
+            FROM 
+              vendas 
+            WHERE 
+              #{conditions}  
+            GROUP BY 
+              #{groupby}"
+    else
+     groupby = "data"
+     
+     query = "
+          SELECT
+            date(dt) data
+            , max(c) custo
+            , max(l) lucro
+            , max(v) venda
+          FROM 
+            (select data_geracao dt, sum(custo) c, sum(lucro) l, sum(venda) v from vendas group by dt) a
+          GROUP BY
+            #{groupby}"    
+    end
+    todas_vendas = DataMapper.repository.adapter.select(query)
     @datas = Array.new(0)
     @custos = Array.new(0)
     @vendas = Array.new(0)
