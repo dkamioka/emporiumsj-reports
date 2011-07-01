@@ -22,6 +22,10 @@ development:
 test:
   database: db/emporiumsj-reports_test.db
   <<: *defaults
-#production:
-#  database: db/emporiumsj-reports_production.db
-#  <<: *defaults
+
+production:
+  database: emporiumsj
+  username: dkamioka
+  password: aixdw
+  host: box.strikeout.com.br
+  <<: *defaults

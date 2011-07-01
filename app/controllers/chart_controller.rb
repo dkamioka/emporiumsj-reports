@@ -15,11 +15,12 @@ class ChartController < ApplicationController
  def show
    data_de = params[:from]
    data_ate = params[:to]
-   if not ( data_de.nil? and data_ate.nil? ) then
+   if !( data_de.nil? and data_ate.nil? ) then
+    
      conditions = "date(data_geracao) between '#{data_de}' and '#{data_ate}'"
      groupby = "data"
       
-     query = "
+     query = %[
             SELECT 
               data_geracao data
               , sum(custo) custo
@@ -30,11 +31,12 @@ class ChartController < ApplicationController
             WHERE 
               #{conditions}  
             GROUP BY 
-              #{groupby}"
+              #{groupby}
+            ]
     else
      groupby = "data"
      
-     query = "
+     query = %[
           SELECT
             date(dt) data
             , max(c) custo
@@ -43,19 +45,23 @@ class ChartController < ApplicationController
           FROM 
             (select data_geracao dt, sum(custo) c, sum(lucro) l, sum(venda) v from vendas group by dt) a
           GROUP BY
-            #{groupby}"    
+            #{groupby}]    
     end
-    todas_vendas = DataMapper.repository.adapter.select(query)
+    
+   todas_vendas = DataMapper.repository.adapter.select(query)
+    
     @datas = Array.new(0)
     @custos = Array.new(0)
     @vendas = Array.new(0)
     @lucros = Array.new(0)
+    
     todas_vendas.each do |v|
       @datas << v.data.strftime('%d/%m/%Y - %H:%M')
       @custos << v.custo.round(2)
       @vendas << v.venda.round(2)
       @lucros << v.lucro.round(2)
-    end
+    end 
+
    @h = LazyHighCharts::HighChart.new('graph') do |f|
          f.series(:name=>'Vendas', :data=>@vendas, :stack=>'venda')
          f.series(:name=>'Lucros', :data=>@lucros, :stack=>'custo')
