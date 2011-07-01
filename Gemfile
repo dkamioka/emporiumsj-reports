@@ -34,6 +34,7 @@ gem 'dm-transactions',      DM_VERSION
 gem 'dm-aggregates',        DM_VERSION
 gem 'dm-timestamps',        DM_VERSION
 gem 'dm-observer',          DM_VERSION
+gem 'dm-active_model',      '~> 1.1.1'
 gem 'lazy_high_charts'
 gem 'jquery-rails', '>= 1.0.3'
 
