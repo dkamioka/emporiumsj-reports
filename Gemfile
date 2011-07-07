@@ -23,7 +23,9 @@ gem 'dm-rails',          '~> 1.1.0'
 
 # gem 'dm-sqlite-adapter',    DM_VERSION
 gem 'dm-mysql-adapter',     DM_VERSION
-gem 'dm-postgres-adapter',  DM_VERSION
+group(:production) do
+  gem 'dm-postgres-adapter',  DM_VERSION
+end
 # gem 'dm-oracle-adapter',    DM_VERSION
 # gem 'dm-sqlserver-adapter', DM_VERSION
 
