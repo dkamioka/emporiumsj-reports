@@ -1,29 +1,57 @@
-<h1>Listing vendas</h1>
+<h1> Vendas </h1>
 
-<table>
+<script> 
+  $(function() {
+    var dates = $( "#from, #to" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+                      onSelect: function( selectedDate ) {
+                        var option = this.id == "fromom" ? "minDate" : "maxDate",
+                        instance = $( this ).data( "datepickerr" ),
+                        date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                        $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings );
+                        dates.not( this ).datepicker( "option", option,not date );
+                    }
+                  });
+                });
+              </script> 
+            </head> 
+            <body> 
+               
+              <div class="demo"> 
+                 
+                <label for="from">From</label> 
+                <input type="text" id="from" name="from"/> 
+                <label for="to">to</label> 
+                <input type="text" id="to" name="to"/> 
+                 
+              </div><!-- End demo --> 
+               
+
+<table id="chart">
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Data</th>
+    <th>Custo</th>
+    <th>Venda</th>
+    <th>Lucro</th>
   </tr>
 
-<% @vendas.each do |venda| %>
-  <% if venda.data_geracao.to_date == Date.today.prev_day() %>
-  <tr>
-    <td><%= venda.data_geracao.strftime "%d/%m/%Y" %><td>
-    <td><%= venda.controle %></td>
-    <td><%= venda.nome_produto %></td>
-    <td><%= venda.custo %></td>
-    <td><%= venda.venda %></td>
-    <td><%= venda.lucro %></td>
-    <td><%= link_to 'Show', venda %></td>
-    <td><%= link_to 'Edit', edit_venda_path(venda) %></td>
-    <td><%= link_to 'Destroy', venda, :confirm => 'Are you sure?', :method => :delete %></td>
+<% @custos.each do |k,v| %>
+  <tr class="<%= cycle("alt","none") %>">
+    <td><%= k %></td>
+    <td><%= v %></td>
+    <td><%= @vendas[k] %></td>
+    <td><%= @lucros[k] %></td>
   </tr>
-  <% end %>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Venda', new_venda_path %>
+
+
+
+
