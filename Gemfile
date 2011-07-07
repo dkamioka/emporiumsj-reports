@@ -40,7 +40,7 @@ gem 'dm-observer',          DM_VERSION
 gem 'dm-active_model',      '~> 1.1.1', :git => 'git://github.com/datamapper/dm-active_model.git'
 gem 'lazy_high_charts'
 gem 'jquery-rails', '>= 1.0.3'
-
+gem 'brazilian-rails'
 group(:development, :test) do
 
   # Uncomment this if you want to use rspec for testing your application
