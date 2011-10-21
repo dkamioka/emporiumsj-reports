@@ -41,6 +41,12 @@ gem 'dm-active_model',      '~> 1.1.1', :git => 'git://github.com/datamapper/dm-
 gem 'lazy_high_charts'
 gem 'jquery-rails', '>= 1.0.3'
 gem 'brazilian-rails'
+gem 'omniauth'
+#### dm-devise
+gem 'devise',             '~> 1.4.2'
+gem 'dm-core',           '~> 1.1.0'
+gem 'dm-serializer',     '~> 1.1.0'
+gem 'dm-devise',         '~> 1.5.0'
 group(:development, :test) do
 
   # Uncomment this if you want to use rspec for testing your application
