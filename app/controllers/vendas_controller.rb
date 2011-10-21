@@ -1,5 +1,7 @@
 class VendasController < ApplicationController
 
+  before_filter :authenticate_user!
+
   # GET /vendas
   # GET /vendas.xml
   def index

@@ -8,9 +8,9 @@ class User
 
 
   property :id, Serial
-  property :email, String, :length => 255
-  property :password, String, :length => 255
-  property :password_confirmation, String, :length => 255
+  #property :email, String, :length => 255
+  #property :password, String, :length => 255
+  #property :password_confirmation, String, :length => 255
   property :login, String, :length => 255
 
 end
