@@ -1,16 +1,17 @@
 class ChartController < ApplicationController
- def index
+
+  def index
    todas_vendas = Venda.all
    @custos = Hash.new(0)
    @vendas = Hash.new(0)
    @lucros = Hash.new(0)
     todas_vendas.each do |v|
-     data = v.data_geracao.to_s
-     @custos[data] += v.custo
-     @vendas[data] += v.venda
-     @lucros[data] += v.lucro
+     data = (Time.parse v.controle).strftime('%d/%m/%Y %H')
+     @custos[data] += Dinheiro.new(v.custo)
+     @vendas[data] += Dinheiro.new(v.venda)
+     @lucros[data] += Dinheiro.new(v.lucro)
    end
- end
+  end
  
  def show
    data_de = params[:from]

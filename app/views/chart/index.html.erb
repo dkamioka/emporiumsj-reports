@@ -50,9 +50,9 @@
 <% @custos.each do |k,v| %>
   <tr class="<%= cycle("alt","none") %>">
     <td><%= k %></td>
-    <td><%= v %></td>
-    <td><%= @vendas[k] %></td>
-    <td><%= @lucros[k] %></td>
+    <td><%= v.reais_formatado %></td>
+    <td><%= @vendas[k].reais_formatado %></td>
+    <td><%= @lucros[k].reais_formatado %></td>
   </tr>
 <% end %>
 </table>
